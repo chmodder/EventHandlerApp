@@ -21,38 +21,12 @@ namespace EventHandlerApp.Model
 
         public static EventCatalogSingleton Instance { get; } = new EventCatalogSingleton();
 
-        //private static EventCatalogSingleton _instance;
-
         private EventCatalogSingleton()
         {
-            //Events = new ObservableCollection<Event>();
-
-            List<Event> tempEvents = new List<Event>(PersistencyService.LoadEventsFromJsonAsync().Result);
-
             Events = new ObservableCollection<Event>();
+            List<Event> tempEvents = new List<Event>(PersistencyService.LoadEventsFromJsonAsync().Result);
             Events = new ObservableCollection<Event>(tempEvents);
-
-            //if (DesignMode.DesignModeEnabled.Equals(true))
-            //{
-            //    Events = new ObservableCollection<Event>();
-
-            //    Event e1 = new Event(1, "Final event", "Project Introduction", "EGV", new DateTime(2015, 12, 18, 9, 0, 0));
-            //    Event e2 = new Event(2, "1. semester exam", "Individual exam", "EGV", new DateTime(2015, 12, 18, 9, 0, 0));
-            //    Events.Add(e1);
-            //    Events.Add(e2);
-            //}
-
         }
-
-        //public static EventCatalogSingleton GetInstance()
-        //{
-
-        //    if (_instance == null)
-        //    {
-        //        _instance = new EventCatalogSingleton();
-        //    }
-        //    return _instance;
-        //}
 
         public async Task Add(int id, string name, string place, string description, DateTime dateTime)
         {
